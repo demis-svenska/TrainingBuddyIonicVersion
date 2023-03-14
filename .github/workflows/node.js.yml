@@ -21,6 +21,8 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
+    - run: mkdir -p path/to/artifact
+    - run: echo hello > path/to/artifact/world.txt
     - uses: actions/download-artifact@v3
       with:
         name: my-artifact
