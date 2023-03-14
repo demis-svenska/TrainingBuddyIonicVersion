@@ -21,11 +21,6 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v3
-      with:
-        node-version: ${{ matrix.node-version }}
-        cache: 'npm'
     - uses: actions/download-artifact@v3
       with:
         name: my-artifact
@@ -33,6 +28,11 @@ jobs:
     - name: Display structure of downloaded files
       run: ls -R
       working-directory: path/to/artifact
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'npm'
     - run: npm ci
     - run: npm run build --if-present
     - run: npm test
